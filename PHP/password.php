@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Password</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/signup.css">
+    <link rel="stylesheet" href="../CSS/signup.css">
+    <link rel="stylesheet" href="../CSS/Party.css">
 </head>
 
 <body>
@@ -29,28 +30,37 @@
             </div>
         </div>
     </nav>
-    <main class="mt-5">
-        <h1 class="text-center">Login using your credentials below</h1>
-        <div class="container cont mt-5">
-            <form action="" class="m-4">
-                <div class="mt-5">
-                    <input type="email" name="email" placeholder="Email" class="form-control">
-                </div>
-                <div class="mt-5">
-                    <input type="password" name="password" placeholder="Password" class="form-control">
-                </div>
-                <div class="mt-5">
-                    <a href="" type="submit" class="btn btn-lg bg-secondary">Login</a>
-                </div>
-                <p class="text-right"><a href="">Forgot Password?</a></p>
-                <P class="text-center mt-5">New User? <a href="signup.html">Join Now</a></P>
-
-
+    <main class="container center">
+        <div class="">
+            <h2 class="text-center">Reset your password</h2>
         </div>
-        </form>
+        <div class="mt-5">
+            <h5>Please fill the form below to recover your password.</h3>
+        </div>
+        <div>
+            <form action="" class="mt-5">
+                <div class="">
+                    <input type="email" name="email" placeholder="Email" class="form-control col-md-8">
+                    <input type="password" name="password" placeholder="Password" class="form-control col-md-8 mt-5">
+                    <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control col-md-8 mt-5">
+                    <a href="" type="submit" , class="btn btn-sm bg-secondary col-md-2 mt-3">Reset</a>
+                </div>
+            </form>
         </div>
     </main>
 
+    <footer>
+        <div class="socialmedia">
+            <ul class="icons">
+
+                <l1><a href=""><img src="../images.png" alt="" class="icons"></a></l1>
+
+
+            </ul>
+            <p class="text-center">ClubAberdeen 2022</p>
+
+        </div>
+    </footer>
 
     <!--I will like to clearly state that the links below are javascript codes from bootstrap official site and are included as advised on getbootstrap.com. I claim no ownership-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -63,25 +73,6 @@
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
 
-    <div class="mt-5">
-
-        <h1 class="text-center mt-5">Welcome to Nightlife in Aberdeen</h1>
-
-    </div>
 </body>
-<footer>
-    <div class="socialmedia text-center">
-        <ul class="icons">
-            <l1><a href=""><img src="twitter.png" alt="" class="icons"></a></l1>
-            <l1><a href=""><img src="instagram.jpg" alt="" class="icons"></a></l1>
-            <l1><a href=""><img src="instagram.jpg" alt="" class="icons"></a></l1>
-            <l1><a href=""><img src="images.png" alt="" class="icons"></a></l1>
-
-
-        </ul>
-        <p>ClubAberdeen 2022</p>
-
-    </div>
-</footer>
 
 </html>

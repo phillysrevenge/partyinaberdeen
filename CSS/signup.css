@@ -11,10 +11,14 @@ footer{
 }
 
 .icons{
-    height: 30px;
-    background-color: #6f2232;
+    height: 50px;
+    width: 70px;
 }
 p{
     display: block;
+    font-weight: bold;
+}
+.password{
+    color: black;
     font-weight: bold;
 }
