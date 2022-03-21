@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 break;
 
                                 case "storyteller":
-                                 header("location: hometeller.php");   
+                                 header("location: homeadmin.php");   
 
                             }
                         }

@@ -5,9 +5,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     
     exit;
 }
-if(!isset($_SESSION["role"]) || $_SESSION["role"] == "reader" || "storyteller"){
-    header("location: logout.php");
-}
+//if(!isset($_SESSION["role"]) || $_SESSION["role"] == "reader" || "storyteller"){
+ //   header("location: logout.php");
+//}
 
 
 ?>
@@ -36,12 +36,15 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] == "reader" || "storyteller"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-                
-                <a href="admin.php" class="nav-item nav-link">Admin</a>
+                <?php
+                include('navs.php');
+                ?>
+                <!--a href="admin.php" class="nav-item nav-link">Admin</a>
                 <a href="logout.php" class="nav-item nav-link">Signout</a>
                 <a href="fileupload.php" class="nav-item nav-link">Post</a>
-                <a href="password.php" class="nav-item nav-link">Change Password</a>
-
+                <a href="password.php" class="nav-item nav-link">Change Password</a-->
+                
+                
             </div>
             <form class="d-flex ml-auto">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
