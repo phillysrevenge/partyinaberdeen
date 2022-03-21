@@ -2,8 +2,12 @@
 session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: logintestrole.php");
-    exit;
+   exit; 
 }
+if(!isset($_SESSION["role"]) || $_SESSION["role"] == "reader"){
+    header("location: logout.php");
+}
+
 
 ?>
 
@@ -30,7 +34,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-            <a href="homenormal.php" class="nav-item nav-link">Home</a>
+            <a href="homeadmin.php" class="nav-item nav-link">Home</a>
                 <a href="fileupload.php" class="nav-item nav-link">Post</a>
                 <a href="login.php" class="nav-item nav-link">Login</a>
                 <a href="logout.php" class="nav-item nav-link">Signout</a>

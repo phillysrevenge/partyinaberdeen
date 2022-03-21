@@ -100,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
          //i can execute my statement in peace now
          if($stmt->execute()){
              //Take the tourist to the login page to input his/her credentials!
-             header("location: login.php");
+             header("location: logintestrole.php");
             }
          else{
              echo " Hey buddy, take a breath and try again.";

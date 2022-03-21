@@ -3,9 +3,12 @@
  session_start();
  //check if the user is logged in
  if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: Homepage.php");
+    header("location: logout.php");
     exit;
- }
+}
+ 
+
+
  //include the database connection file
  require_once "dbconnection.php";
 
@@ -67,7 +70,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             //redirect the user to the homepage.
                             switch($role){
                                 case "admin":
-                                header("location: Homepage.php");
+                                header("location: homeadmin.php");
                                 break;
 
                                 case "reader":
