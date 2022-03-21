@@ -3,8 +3,8 @@
 require_once "dbconnection.php";
 
 //I'll define the variables as initial values first.
-$username = $email = $password = $phone = "";
-$usernameerror = $emailerror = $passworderror = $phoneerror = "";
+$username = $email = $password = $phone = $role = "";
+$usernameerror = $emailerror = $passworderror = $phoneerror = $roleerror = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //I'll validate the username field first
@@ -71,16 +71,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     else{
         $phone = trim($_POST["phone"]);
     }
+    if(empty(trim($_POST["role"]))){
+        $roleerror = "Hey buddy select a role please";
+    }
+    else{
+        $role = trim($_POST["role"]);
+    }
     //Now i verify that there is no error hiding somewhere before i insert in my database
-    if(empty($usernameerror) && empty($emailerror) && empty($passworderror) && empty($phoneerror)){
+    if(empty($usernameerror) && empty($emailerror) && empty($passworderror) && empty($phoneerror) && empty($roleerror)){
       //the fun part!!
-      $sql = "INSERT INTO users (username, password, email, phone) VALUES (:username, :password, :email, :phone)";  
+      $sql = "INSERT INTO users (username, password, email, phone, role) VALUES (:username, :password, :email, :phone, :role)";  
       if($stmt = $pdo->prepare($sql)){
          //as i did above when verifying the email, i'll have to give the :username, :password, etc.. values
          $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
          $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
          $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
          $stmt->bindParam(":phone", $param_phone, PDO::PARAM_STR);
+         $stmt->bindParam(":role", $param_role, PDO::PARAM_STR);
 
          //give the param_ the values from the form
          //recall above i already gave the $username variable the values trimmed from the form?
@@ -89,6 +96,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
          //This means even if someone does an sql injection attack i'm still safe a little!
          $param_email = $email;
          $param_phone = $phone;
+         $param_role = $role;
          //i can execute my statement in peace now
          if($stmt->execute()){
              //Take the tourist to the login page to input his/her credentials!
@@ -141,10 +149,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-                <a href="Homepage.html" class="nav-item nav-link">Home</a>
-                <a href="" class="nav-item nav-link">Contact Us</a>
-                <a href="login.html" class="nav-item nav-link">Login</a>
-                <a href="" class="nav-item nav-link">Signout</a>
+            <a href="homenormal.php" class="nav-item nav-link">Home</a>
+                <a href="fileupload.php" class="nav-item nav-link">Post</a>
+                <a href="login.php" class="nav-item nav-link">Login</a>
+                <a href="logout.php" class="nav-item nav-link">Signout</a>
 
             </div>
         </div>
@@ -178,6 +186,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                     <input type="text" name="phone" class="form-control <?php echo(!empty($phoneerror)) ? 'is-invalid' : ''; ?>" value= "<?php echo $phone; ?>" placeholder="Phone Number">
                     <span class="invalid-feedback"><?php echo $phoneerror; ?></span>
+                </div>
+                <div class="form-group mt-5">
+                    <label for="Role">Select a Role</label>
+                <select name="role" id="Role" class="form-control <?php echo(!empty($roleerror)) ? 'is-invalid' : ''; ?>" value= "<?php echo $role; ?>">
+                    <option value="admin">--Select a role--</option>
+                    <option value="admin">Admin</option>
+                    <option value="storyteller">Story Teller</option>
+                    <option value="reader">Reader</option>
+                </select>
+                <span class="invalid-feedback"><?php echo $roleerror; ?></span>
+
                 </div>
                 <div class="mt-5">
                     <input type="checkbox" name="" id=""> I agree with the Terms of Use.

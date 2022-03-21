@@ -9,7 +9,7 @@ session_destroy();
 
 //now that there is no more session, it's holiday time.
 // Redirct to login page if you want a new session
-header("location: login.php");
+header("location: logintestrole.php");
 exit;
 
 ?>

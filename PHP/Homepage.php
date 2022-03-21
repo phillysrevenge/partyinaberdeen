@@ -8,7 +8,7 @@
     <title>Party</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/signup.css">
+    <link rel="stylesheet" href="../CSS/signup.css">
 </head>
 
 <body style="background-color: #4e4e50;">
@@ -22,8 +22,8 @@
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
                 <a href="" class="nav-item nav-link">Home</a>
-                <a href="" class="nav-item nav-link">Contact Us</a>
-                <a href="" class="nav-item nav-link">Login</a>
+                <a href="admin.php" class="nav-item nav-link">Admin</a>
+                <a href="logout.php" class="nav-item nav-link">Signout</a>
                 <a href="/partyinaberdeen/register.html" class="nav-item nav-link">Signup</a>
 
             </div>
@@ -123,10 +123,10 @@
     <footer>
         <div class="socialmedia text-center">
             <ul class="icons">
-                <l1><a href=""><img src="twitter.png" alt="" class="icons"></a></l1>
-                <l1><a href=""><img src="instagram.jpg" alt="" class="icons"></a></l1>
-                <l1><a href=""><img src="instagram.jpg" alt="" class="icons"></a></l1>
-                <l1><a href=""><img src="images.png" alt="" class="icons"></a></l1>
+                <l1><a href=""><img src="../twitter.png" alt="" class="icons"></a></l1>
+                <l1><a href=""><img src="../instagram.jpg" alt="" class="icons"></a></l1>
+                <l1><a href=""><img src="../instagram.jpg" alt="" class="icons"></a></l1>
+                <l1><a href=""><img src="../images.png" alt="" class="icons"></a></l1>
 
 
             </ul>

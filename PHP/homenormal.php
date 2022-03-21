@@ -36,7 +36,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
                 <a href="" class="nav-item nav-link">Home</a>
-                <a href="" class="nav-item nav-link">Contact Us</a>
+                <a href="password.php" class="nav-item nav-link">Contact Us</a>
                 <a href="logout.php" class="nav-item nav-link">Logout</a>
                 <a href="register.html" class="nav-item nav-link">Signup</a>
 
@@ -47,7 +47,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </form>
         </div>
     </nav>
-    <h3>Logged in as <?php echo htmlspecialchars($_SESSION["email"]); ?></h3>
+    <h3>Logged in as <?php echo htmlspecialchars($_SESSION["role"]); ?></h3>
     <h1 class="text-center mt-5">Party in Aberdeen</h1>
     
     <div class="container mt-5">

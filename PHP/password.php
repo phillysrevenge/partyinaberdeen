@@ -1,3 +1,92 @@
+<?php
+//Start the session
+session_start();
+
+//confirm the user is logged in, if not send him to the login page.
+
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: logintest.php");
+    exit;
+}
+
+//include our database connection file
+
+require_once "dbconnection.php";
+
+//define the variables with empty values initially
+
+$email = $newpassword =$confirmpassword = "";
+$emailerror = $newpassworderror = $confirmpassworderror = ""; 
+
+//now we process the form data
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // first validate the email field
+    if(empty(trim($_POST["email"]))){
+       $emailerror = "Please enter a valid email address.";
+    }
+    else{
+        $email = trim($_POST["email"]);
+    }
+
+    //validate the password field also.
+    if(empty(trim($_POST["newpassword"]))){
+        $newpassworderror = "Please enter a password";
+    }
+    else{
+        $newpassword = trim($_POST["newpassword"]);
+    }
+
+    //validate the confirmpassword field also
+    if(empty(trim($_POST["confirmpassword"]))){
+        $confirmpassworderror = "Please confirm the password entered above.";
+    }
+    else{
+        $confirmpassword = trim($_POST["confirmpassword"]);
+        if(empty($newpassworderror) && ($newpassword != $confirmpassword)){
+            $confirmpassworderror = "The passwords did not match.";
+        }
+    }
+
+    //ensure there is no input error before sending to the database
+    if(empty($emailerror) && empty($newpassworderror) && empty($confirmpassworderror)){
+        //prepare the sql statement to update the password in the database
+        $sql = "UPDATE users SET password = :password WHERE id = :id";
+
+        if($stmt =$pdo->prepare($sql)){
+            //Bind the variables :password and :id to something called parampassword and paramid
+            $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+            $stmt->bindParam(":id", $param_id, PDO::PARAM_INT);
+            //after binding them, now we set the password to be hashed using php's default algorithm
+            $param_password = password_hash($newpassword, PASSWORD_DEFAULT);
+            //set the parameter for id too using the session id since the user is already loggedin
+            $param_id = $_SESSION["id"];
+
+            //execute the statement
+            if($stmt->execute()){
+                //the password has been updated successfully so we can destroy the session
+                session_destroy();
+                //after destroying the session, redirect the user to the login page
+                header("location: login.php");
+                exit();
+            }
+            else{
+                echo "Sorry buddy something went wrong. Try again after a cup of tea.";
+            }
+            //now we can close the statement
+            unset($stmt);
+        }
+    }
+
+    //close the connection
+    unset($pdo);
+
+
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,10 +111,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-                <a href="" class="nav-item nav-link">Home</a>
-                <a href="" class="nav-item nav-link">Contact Us</a>
-                <a href="" class="nav-item nav-link">Login</a>
-                <a href="" class="nav-item nav-link">Signout</a>
+                <a href="homenormal.php" class="nav-item nav-link">Home</a>
+                <a href="fileupload.php" class="nav-item nav-link">Post</a>
+                <a href="login.php" class="nav-item nav-link">Login</a>
+                <a href="logout.php" class="nav-item nav-link">Signout</a>
 
             </div>
         </div>
@@ -38,12 +127,21 @@
             <h5>Please fill the form below to recover your password.</h3>
         </div>
         <div>
-            <form action="" class="mt-5">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="mt-5" method="post">
                 <div class="">
-                    <input type="email" name="email" placeholder="Email" class="form-control col-md-8">
-                    <input type="password" name="password" placeholder="Password" class="form-control col-md-8 mt-5">
-                    <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control col-md-8 mt-5">
-                    <a href="" type="submit" , class="btn btn-sm bg-secondary col-md-2 mt-3">Reset</a>
+                    <div>
+                    <input type="email" name="email" placeholder="Email" class="form-control col-md-8 <?php echo (!empty($emailerror)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                    <span class="invalid-feedback"><?php echo $emailerror; ?></span>
+                </div>
+                    <div>
+                    <input type="password" name="newpassword" placeholder="Password" class="form-control col-md-8 mt-5 <?php echo (!empty($newpassworderror)) ? 'is-invalid' : ''; ?>" value="<?php echo $newpassword; ?>">
+                    <span class="invalid-feedback"><?php echo $newpassworderror; ?></span>
+                </div>
+                    <div>
+                    <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control col-md-8 mt-5 <?php echo (!empty($confirmpassworderror)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirmpassword; ?>">
+                    <span class="invalid-feedback"><?php echo $confirmpassworderror; ?></span>
+                </div>
+                    <input type="submit" class="btn btn-lg bg-secondary" value="Reset">
                 </div>
             </form>
         </div>
