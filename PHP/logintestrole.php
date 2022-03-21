@@ -71,7 +71,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 break;
 
                                 case "reader":
-                                header("location: homenormal.php");
+                                header("location: homereader.php");
+                                break;
+
+                                case "storyteller":
+                                 header("location: hometeller.php");   
 
                             }
                         }

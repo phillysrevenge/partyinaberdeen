@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: logintestrole.php");
     exit;
 }
 
@@ -38,7 +38,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <a href="" class="nav-item nav-link">Home</a>
                 <a href="password.php" class="nav-item nav-link">Contact Us</a>
                 <a href="logout.php" class="nav-item nav-link">Logout</a>
-                <a href="register.html" class="nav-item nav-link">Signup</a>
+                <a href="signup.php" class="nav-item nav-link">Signup</a>
 
             </div>
             <form class="d-flex ml-auto">

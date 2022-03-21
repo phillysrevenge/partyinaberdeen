@@ -5,7 +5,7 @@ session_start();
 //confirm the user is logged in, if not send him to the login page.
 
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: logintest.php");
+    header("location: logintestrole.php");
     exit;
 }
 

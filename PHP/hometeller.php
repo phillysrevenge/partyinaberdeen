@@ -4,8 +4,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: logintestrole.php");
     
 }
-if(!isset($_SESSION["role"]) !== "admin"){
-    header("location: homenormal.php");
+if(!isset($_SESSION["role"]) !== "storyteller"){
+    header("location: homereader.php");
     exit;
 }
 
@@ -36,7 +36,7 @@ if(!isset($_SESSION["role"]) !== "admin"){
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
                 <a href="" class="nav-item nav-link">Home</a>
-                <a href="admin.php" class="nav-item nav-link">Admin</a>
+                
                 <a href="logout.php" class="nav-item nav-link">Signout</a>
                 <a href="fileupload.php" class="nav-item nav-link">Post</a>
 
