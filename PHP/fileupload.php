@@ -34,7 +34,7 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] == "reader"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-            <a href="homeadmin.php" class="nav-item nav-link">Home</a>
+            <a href="testhome.php" class="nav-item nav-link">Home</a>
                 <a href="fileupload.php" class="nav-item nav-link">Post</a>
                 <a href="login.php" class="nav-item nav-link">Login</a>
                 <a href="logout.php" class="nav-item nav-link">Signout</a>

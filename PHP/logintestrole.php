@@ -70,17 +70,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             //redirect the user to the homepage.
                             switch($role){
                                 case "admin":
-                                header("location: homeadmin.php");
+                                header("location: testhome.php");
                                 break;
 
                                 case "reader":
-                                header("location: homereader.php");
+                                header("location: readershome.php");
                                 break;
 
                                 case "storyteller":
-                                 header("location: homeadmin.php");   
-
+                                 header("location: testhome.php");   
                             }
+
+                            
                         }
                         else{
                             $loginerror = "Invalid email or password buddy."; 

@@ -3,12 +3,8 @@ session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: logintestrole.php");
     
-}
-if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "storyteller"){
-    header("location: logintestrole.php");
     exit;
 }
-
 ?>
 
 
@@ -22,10 +18,11 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "storyteller"){
     <title>Party</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="../CSS/signup.css">
+
+    <link rel="stylesheet" href="../Party.css">
 </head>
 
-<body style="background-color: #4e4e50;">
+<body>
     <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #6f2232;">
 
         <a class="navbar-brand" href="#">PartyAberdeen</a>
@@ -35,10 +32,9 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "storyteller"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-                <a href="" class="nav-item nav-link">Home</a>
-                <a href="logout.php" class="nav-item nav-link">Signout</a>
-                <a href="fileupload.php" class="nav-item nav-link">Post</a>
-                <a href="password.php" class="nav-item nav-link">Change Password</a>
+            <?php
+                include('navs.php');
+            ?>
 
             </div>
             <form class="d-flex ml-auto">
@@ -49,30 +45,30 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "storyteller"){
     </nav>
     <h3>Logged in as <?php echo htmlspecialchars($_SESSION["role"]); ?></h3>
     <h1 class="text-center mt-5">Party in Aberdeen</h1>
-    <div class="container" style="background-color:#4e4e50;">
+    <div class="container mt-5">
         <div class="row justify-content-between">
-            <div class="card col-md-4" style="width: 18rem;">
-                <img src="https://images.unsplash.com/photo-1646521819511-e61831b9a602?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"
-                    class="card-img-top  img-fluid" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card col-md-4" style="width: 18rem;">
-                <img src="https://images.unsplash.com/photo-1646521819511-e61831b9a602?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"
+            <div class="col-3.5 col-md-3 col-sm-12" style="width: 18rem;">
+                <img src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBhcnR5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                     class="card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                         card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="https://www.atikclub.co.uk/club/aberdeen/" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="card col-md-4" style="width: 18rem;">
-                <img src="https://images.unsplash.com/photo-1646521819511-e61831b9a602?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"
+            <div class="col-3.5 col-md-3 col-sm-12" style="width: 18rem;">
+                <img src="https://images.unsplash.com/photo-1602618135005-165bc6b7e847?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y2x1YnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                    class=" card-img-top img-thumbnail img-fluid" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="fileupload.html" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class=" col-3.5 col-md-3 col-sm-12" style="width: 18rem;">
+                <img src="https://images.unsplash.com/photo-1569924995012-c4c706bfcd51?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bmlnaHRjbHVifGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60"
                     class="card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
@@ -82,18 +78,11 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "storyteller"){
                 </div>
             </div>
         </div>
-        <h1 class="text-center mt-5">Post</h1>
-        <div class="row justify-content-center mt-5">
-
-            <button class="btn btn-secondary btn-lg col-6" type="submit"><a href="/partyinaberdeen/fileupload.html"
-                    class="">Share
-                    your Experience</a></button>
-
-        </div>
+        
         <h1 class="mt-5 text-center">View Stories</h1>
-        <div class="row">
-            <div class="card col-md-3" style="width: 18rem;">
-                <img src="https://images.unsplash.com/photo-1646521819511-e61831b9a602?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"
+        <div class="row mt-5">
+            <div class=" col-md-3" style="width: 18rem;">
+                <img src="https://images.unsplash.com/photo-1579450887429-b86059844ac6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fG5pZ2h0Y2x1YnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60"
                     class="card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
@@ -102,8 +91,8 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "storyteller"){
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="card col-md-3" style="width: 18rem;">
-                <img src="https://images.unsplash.com/photo-1646521819511-e61831b9a602?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"
+            <div class=" col-md-3" style="width: 18rem;">
+                <img src="https://images.unsplash.com/photo-1642878289692-0317bbaf50ed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Y2x1YiUyMHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60"
                     class="card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
@@ -112,8 +101,8 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "storyteller"){
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="card col-md-3" style="width: 18rem;">
-                <img src="https://images.unsplash.com/photo-1646521819511-e61831b9a602?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"
+            <div class="col-md-3" style="width: 18rem;">
+                <img src="https://images.unsplash.com/photo-1642878289657-b31f7ba11227?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNsdWIlMjBwZW9wbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60"
                     class="card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
@@ -122,8 +111,8 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "storyteller"){
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="card col-md-3" style="width: 18rem;">
-                <img src="https://images.unsplash.com/photo-1646521819511-e61831b9a602?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"
+            <div class="col-md-3" style="width: 18rem;">
+                <img src="https://images.unsplash.com/photo-1526654583006-5a084e2f004b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTQ0fHxjbHViJTIwcGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60"
                     class="card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
@@ -133,22 +122,7 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "storyteller"){
                 </div>
             </div>
         </div>
-
     </div>
-    <footer>
-        <div class="socialmedia text-center">
-            <ul class="icons">
-                <l1><a href=""><img src="../twitter.png" alt="" class="icons"></a></l1>
-                <l1><a href=""><img src="../instagram.jpg" alt="" class="icons"></a></l1>
-                <l1><a href=""><img src="../instagram.jpg" alt="" class="icons"></a></l1>
-                <l1><a href=""><img src="../images.png" alt="" class="icons"></a></l1>
-
-
-            </ul>
-            <p>ClubAberdeen 2022</p>
-
-        </div>
-    </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
