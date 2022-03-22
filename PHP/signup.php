@@ -191,7 +191,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <label for="Role">Select a Role</label>
                 <select name="role" id="Role" class="form-control <?php echo(!empty($roleerror)) ? 'is-invalid' : ''; ?>" value= "<?php echo $role; ?>">
                     <option value="admin">--Select a role--</option>
-                    <option value="admin">Admin</option>
+                   <!-- <option value="admin">Admin</option> -->
                     <option value="storyteller">Story Teller</option>
                     <option value="reader">Reader</option>
                 </select>
