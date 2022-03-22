@@ -19,8 +19,11 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     }
     elseif($_SESSION["role"] == "reader"){
         echo "
+        <a href=\"readershome.php\" class=\"nav-item nav-link\">Home</a>
         <a href=\"logout.php\" class=\"nav-item nav-link\">Signout</a>
         <a href=\"password.php\" class=\"nav-item nav-link\">Change Password</a>";
+        
+
     }
 }/*else{
     echo "<a href="admin.php" class="nav-item nav-link">Admin</a>
