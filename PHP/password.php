@@ -111,10 +111,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-                <a href="homenormal.php" class="nav-item nav-link">Home</a>
-                <a href="fileupload.php" class="nav-item nav-link">Post</a>
-                <a href="login.php" class="nav-item nav-link">Login</a>
-                <a href="logout.php" class="nav-item nav-link">Signout</a>
+            <?php
+                include('navs.php');
+            ?>
+
 
             </div>
         </div>
@@ -141,7 +141,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control col-md-8 mt-5 <?php echo (!empty($confirmpassworderror)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirmpassword; ?>">
                     <span class="invalid-feedback"><?php echo $confirmpassworderror; ?></span>
                 </div>
-                    <input type="submit" class="btn btn-lg bg-secondary" value="Reset">
+                    <input type="submit" class="btn btn-lg bg-secondary mt-5" value="Reset">
                 </div>
             </form>
         </div>
