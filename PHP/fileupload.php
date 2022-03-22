@@ -8,6 +8,51 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] == "reader"){
     header("location: logout.php");
 }
 
+require_once "dbconnection.php";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $dir = "Uploads/";
+    $filename = $dir . basename($_FILES["picture"]["name"]);
+    $uploadOk = 1;
+    $file_type = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
+
+    if(file_exists($filename)){
+        echo "Hey Buddy this file already exists";
+        $uploadOk = 0;
+    }
+    if($_FILES["picture"]["size"] > 1000000){
+        echo "Hey buddy the file is too large.";
+        $uploadOk = 0;
+    }
+    /*if($file_type != "jpg" && $file_type != "jpeg" && $file_type != "png" && $file_type != "gif" && $file_type != "pdf"){
+      echo "File must be a jpg, jpeg, png, pdf, or gif format";
+      $uploadOk = 0;
+    }*/
+    if($uploadOk = 0){
+        echo "Sorry Buddy file was not uploaded.";
+    }
+    else{
+        if(move_uploaded_file($_FILES["picture"]["tmp_name"], $filename)){
+            if(isset($_POST["clubname"])) $club = $_POST["clubname"];
+            if(isset($_POST["location"])) $location = $_POST["location"];
+            if(isset($_POST["category"])) $category = $_POST["category"];
+            if(isset($_POST["caption"])) $caption = $_POST["caption"];
+            $picture = $filename;
+
+            $sql = "INSERT INTO posts (club, location, category, caption, picture) VALUES ('$club', '$location', '$category', '$caption', '$picture')";
+            $result = $pdo->exec($sql);
+
+            header("location: testhome.php");
+        
+        }
+        else{
+            echo "Sorry could not upload";
+            exit;
+        }
+    }
+}
+
+
 
 ?>
 
@@ -43,13 +88,13 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] == "reader"){
         </div>
     </nav>
     <div class="container mt-5">
-        <form action="">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-4">
                     <h4><label for="name">Name of Club</label></h4>
                 </div>
                 <div class="col-md-7">
-                    <input type="text" name="" id="name" class="form-control">
+                    <input type="text" name="clubname" id="name" class="form-control">
                 </div>
             </div>
             <div class="row mt-3">
@@ -57,7 +102,7 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] == "reader"){
                     <h4><label for="location">Location</label></h4>
                 </div>
                 <div class="col-md-7">
-                    <input type="text" name="" id="location" class="form-control">
+                    <input type="text" name="location" id="location" class="form-control">
                 </div>
             </div>
             <div class="row mt-3">
@@ -80,7 +125,7 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] == "reader"){
                     <h4><label for="Upload">Upload</label></h4>
                 </div>
                 <div class="col-md-7">
-                    <input type="file" name="" id="Upload" class="form-control">
+                    <input type="file" name="picture" class="form-control">
                 </div>
             </div>
             <div class="row justify-content-center mt-3 ml-2">
@@ -92,7 +137,7 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] == "reader"){
                     <h4><label for="caption">Caption:</label></h4>
                 </div>
                 <div class="col-md-7">
-                    <textarea name="" id="caption" cols="90" rows="10" class="form-control"></textarea>
+                    <textarea name="caption" id="caption" cols="90" rows="10" class="form-control"></textarea>
                 </div>
             </div>
             <div class="row mt-5">
