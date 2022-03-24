@@ -13,12 +13,29 @@
        $stories = $stmt->fetchAll(PDO::FETCH_ASSOC);
        $count = count($stories);
 
-       $pdo = null;
+       //$pdo = null;
    }
    catch(PDOException $e){
        echo $e->getMessage();
    }
 ?>
+
+<?php
+require_once "dbconnection.php";
+try{
+    $query = "SELECT * FROM clubs";
+    $stmt = $pdo ->prepare($query);
+    $stmt->execute();
+    $clubs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $count = count($clubs);
+
+    $pdo = null;
+}
+catch(PDOException $e){
+    echo $e->getMessage();
+}
+?>
+
 
 
 <!DOCTYPE html>
@@ -60,19 +77,22 @@
     <h1 class="text-center mt-5">Party in Aberdeen</h1>
     <div class="container mt-5">
         <div class="row justify-content-between">
+        <?php
+            foreach($clubs as $club){?>
             
-            
-            <div class="col-3.5 col-md-3 col-sm-12" style="width: 18rem;">
-                <img src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBhcnR5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+            <div class="col-4 col-md-4 col-sm-12" style="width: 18rem;">
+                <img style="height: 400px;" src="<?php echo $club["picture"]?>"
                     class="card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                    <h5 class="card-title">Club Name: <?php echo $club["clubname"]; ?></h5>
+                    <p class="card-text">Club Location: <?php echo $club["Location"]; ?></p>
+                    <p class="card-text">Club Category: <?php echo $club["Category"]; ?></p>
                     <a href="https://www.atikclub.co.uk/club/aberdeen/" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-            <div class="col-3.5 col-md-3 col-sm-12" style="width: 18rem;">
+            <?php }?>
+           
+           <!-- <div class="col-3.5 col-md-3 col-sm-12" style="width: 18rem;">
                 <img src="https://images.unsplash.com/photo-1602618135005-165bc6b7e847?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y2x1YnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
                     class=" card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
@@ -92,6 +112,7 @@
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
+            -->
         </div>
         
         <h1 class="mt-5 text-center">View Stories</h1>
@@ -105,9 +126,9 @@
                     class="card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Club Name: <?php echo $story["club"]; ?></h5>
-                    <p class="card-text" style="height: 100px;">Caption: <?php echo $story["caption"]; ?></p>
-                    <p class="card-text" style="height: 100px;">Location: <?php echo $story["location"]; ?></p>
-                    <p class="card-text" style="height: 100px;">Author: Anonymous</p> <!--I made the authors of the post anonymous as a lot of people club and they want to keep it confidential-->
+                    <p class="card-text" style="height: 70px;">Caption: <?php echo $story["caption"]; ?></p>
+                    <p class="card-text" style="height: 70px;">Location: <?php echo $story["location"]; ?></p>
+                    <p class="card-text" style="height: 70px;">Author: Anonymous</p> <!--I made the authors of the post anonymous as a lot of people club and they want to keep it confidential-->
 
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
