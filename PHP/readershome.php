@@ -128,7 +128,7 @@ catch(PDOException $e){
                     <h5 class="card-title">Club Name: <?php echo $story["club"]; ?></h5>
                     <p class="card-text" style="height: 70px;">Caption: <?php echo $story["caption"]; ?></p>
                     <p class="card-text" style="height: 70px;">Location: <?php echo $story["location"]; ?></p>
-                    <p class="card-text" style="height: 70px;">Author: Anonymous</p> <!--I made the authors of the post anonymous as a lot of people club and they want to keep it confidential-->
+                    <p class="card-text" style="height: 40px;">Author: Anonymous</p> <!--I made the authors of the post anonymous as a lot of people club and they want to keep it confidential-->
 
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
