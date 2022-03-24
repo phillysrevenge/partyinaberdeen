@@ -1,4 +1,5 @@
 <?php
+//The HTML in this code is almost irrelevant except for styling purpose
 session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: logintestrole.php");

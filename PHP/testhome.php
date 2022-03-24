@@ -6,7 +6,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 ?>
+<?php
+require_once "dbconnection.php";
+try{
+    $sql = "SELECT * FROM posts";
+    $stmt = $pdo ->prepare($sql);
+    $stmt->execute();
+    $stories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $count = count($stories);
 
+    $pdo = null;
+}
+catch(PDOException $e){
+    echo $e->getMessage();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,17 +100,26 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
         </div>
         <h1 class="mt-5 text-center">View Stories</h1>
+      
         <div class="row mt-5">
+         <?php
+            foreach($stories as $story){?>
+
+            
             <div class=" col-md-3" style="width: 18rem;">
-                <img src="https://images.unsplash.com/photo-1579450887429-b86059844ac6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fG5pZ2h0Y2x1YnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60"
+                <img style="height: 150px;" src="<?php echo $story["picture"]?>"
                     class="card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                    <h5 class="card-title">Club Name: <?php echo $story["club"]; ?></h5>
+                    <p class="card-text" style="height: 100px;">Caption: <?php echo $story["caption"]; ?></p>
+                    <p class="card-text" style="height: 100px;">Location: <?php echo $story["location"]; ?></p>
+                    <p class="card-text" style="height: 100px;">Author: Anonymous</p> <!--I made the authors of the post anonymous as a lot of people club and they want to keep it confidential-->
+
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
+            <?php } ?>
+            <!--
             <div class=" col-md-3" style="width: 18rem;">
                 <img src="https://images.unsplash.com/photo-1642878289692-0317bbaf50ed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Y2x1YiUyMHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60"
                     class="card-img-top img-thumbnail img-fluid" alt="...">
@@ -127,7 +150,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
+             -->
         </div>
+           
     </div>
 
     <footer>
