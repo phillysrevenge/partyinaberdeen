@@ -49,7 +49,8 @@ catch(PDOException $e){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../Party.css">
+    <link rel="stylesheet" href="../CSS/Party.css">
+    <link rel="stylesheet" href="../CSS/signup.css">
 </head>
 
 <body>
@@ -168,6 +169,7 @@ catch(PDOException $e){
         </div>-->
 
     </div>
+            </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -180,5 +182,17 @@ catch(PDOException $e){
         crossorigin="anonymous"></script>
 
 </body>
+<footer>
+    <div class="socialmedia">
+    <nav class="nav nav-pills nav-justified">
+  <a class="nav-item nav-link active" href="#">Instagram</a>
+  <a class="nav-item nav-link" href="#">Much longer nav link</a>
+  <a class="nav-item nav-link" href="#">Link</a>
+  <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+</nav>
+        <p class = "text-center">ClubAberdeen 2022</p>
+
+    </div>
+</footer>
 
 </html>

@@ -82,12 +82,12 @@ catch(PDOException $e){
             foreach($clubs as $club){?>
             
             <div class="col-4 col-md-4 col-sm-12" style="width: 18rem;">
-                <img style="height: 200px;" src="<?php echo $club["picture"]?>"
+                <img style="height: 400px;" src="<?php echo $club["picture"]?>"
                     class="card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Club Name: <?php echo $club["clubname"]; ?></h5>
-                    <p class="card-text">Club Location: <?php echo $club["Location"]; ?></p>
-                    <p class="card-text">Club Category: <?php echo $club["Category"]; ?></p>
+                    <h5 class="card-title" style="height: 40px;">Club Name: <?php echo $club["clubname"]; ?></h5>
+                    <p class="card-text" style="height: 60px;">Club Location: <?php echo $club["Location"]; ?></p>
+                    <p class="card-text" style="height: 50px;">Club Category: <?php echo $club["Category"]; ?></p>
                     <a href="https://www.atikclub.co.uk/club/aberdeen/" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
@@ -131,9 +131,9 @@ catch(PDOException $e){
                     class="card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Club Name: <?php echo $story["club"]; ?></h5>
-                    <p class="card-text" style="height: 100px;">Caption: <?php echo $story["caption"]; ?></p>
-                    <p class="card-text" style="height: 100px;">Location: <?php echo $story["location"]; ?></p>
-                    <p class="card-text" style="height: 100px;">Author: Anonymous</p> <!--I made the authors of the post anonymous as a lot of people club and they want to keep it confidential-->
+                    <p class="card-text" style="height: 150px;">Caption: <?php echo $story["caption"]; ?></p>
+                    <p class="card-text" style="height: 50px;">Location: <?php echo $story["location"]; ?></p>
+                    <p class="card-text" style="height: 40px;">Author: Anonymous</p> <!--I made the authors of the post anonymous as a lot of people club and they want to keep it confidential-->
 
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
@@ -177,13 +177,13 @@ catch(PDOException $e){
 
     <footer>
     <div class="socialmedia">
-        <ul class="icons text-center">
+        <ul class="">
 
             <l1><a href=""><img src="../images.png" alt="" class="icons"></a></l1>
 
 
         </ul>
-        <p>ClubAberdeen 2022</p>
+        <p class="text-center">ClubAberdeen 2022</p>
 
     </div>
 </footer>
