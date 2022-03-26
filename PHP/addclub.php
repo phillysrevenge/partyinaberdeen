@@ -53,6 +53,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>File Upload</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="stylesheet" href="../CSS/Party.css">
+    <link rel="stylesheet" href="../CSS/signup.css">
 </head>
 
 <body>
@@ -65,10 +67,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-            <a href="testhome.php" class="nav-item nav-link">Home</a>
-                <a href="fileupload.php" class="nav-item nav-link">Post</a>
-                <a href="login.php" class="nav-item nav-link">Login</a>
-                <a href="logout.php" class="nav-item nav-link">Signout</a>
+            <?php
+                include('navs.php');
+            ?>
 
             </div>
         </div>
@@ -135,5 +136,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
 </body>
+
+
 
 </html>

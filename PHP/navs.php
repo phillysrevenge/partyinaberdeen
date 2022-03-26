@@ -27,9 +27,9 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
     }
 }/*else{
-    echo "<a href="admin.php" class="nav-item nav-link">Admin</a>
-         <a href="logout.php" class="nav-item nav-link">Signout</a>
-         <a href="fileupload.php" class="nav-item nav-link">Post</a>
+    echo "
+         <a href="logintestrole.php" class="nav-item nav-link">Login</a>
+         <a href="fileupload.php" class="nav-item nav-link">About</a>
          <a href="password.php" class="nav-item nav-link">Change Password</a>";}*/
 
 

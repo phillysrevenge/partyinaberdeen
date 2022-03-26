@@ -140,14 +140,14 @@ try{
 
 
 <footer>
-    <div class="socialmedia">
-        <ul class="icons text-center">
-
-            <l1><a href=""><img src="../images.png" alt="" class="icons"></a></l1>
-
-
-        </ul>
-        <p>ClubAberdeen 2022</p>
+    <div class="socialmedia" style="width:100%; display:flex; flex-direction:column; justify-content:center;">
+    <nav class="nav nav-pills nav-justified justify-content-center">
+  <a class="nav-item nav-link" href="#">Fawole</a>
+  <a class="nav-item nav-link" href="#">Oluwaferanmi</a>
+  <a class="nav-item nav-link" href="#">Philemon</a>
+  <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">2120933</a>
+</nav>
+        <p class="text-center">ClubAberdeen 2022</p>
 
     </div>
 </footer>

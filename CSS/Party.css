@@ -35,7 +35,7 @@ a{
 }
 footer{
     background-color:#6f2232;
-    display: flex;
+    
     margin: bottom 0;
 }
 .center{
@@ -45,4 +45,10 @@ footer img{
     width: 30px;
     height: 30px;
     background-color: none;
+}
+.socialmedia{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }

@@ -129,7 +129,7 @@ catch(PDOException $e){
                     <h5 class="card-title">Club Name: <?php echo $story["club"]; ?></h5>
                     <p class="card-text" style="height: 70px;">Caption: <?php echo $story["caption"]; ?></p>
                     <p class="card-text" style="height: 70px;">Location: <?php echo $story["location"]; ?></p>
-                    <p class="card-text" style="height: 40px;">Author: Anonymous</p> <!--I made the authors of the post anonymous as a lot of people club and they want to keep it confidential-->
+                    <p class="card-text" style="height: 40px;">Author: <?php echo $story["author"]; ?></p> <!--I made the authors of the post anonymous as a lot of people club and they want to keep it confidential-->
 
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
@@ -183,14 +183,14 @@ catch(PDOException $e){
 
 </body>
 <footer>
-    <div class="socialmedia">
-    <nav class="nav nav-pills nav-justified">
-  <a class="nav-item nav-link active" href="#">Instagram</a>
-  <a class="nav-item nav-link" href="#">Much longer nav link</a>
-  <a class="nav-item nav-link" href="#">Link</a>
-  <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    <div class="socialmedia" style="width:100%; display:flex; flex-direction:column; justify-content:center;">
+    <nav class="nav nav-pills nav-justified justify-content-center">
+  <a class="nav-item nav-link" href="#">Fawole</a>
+  <a class="nav-item nav-link" href="#">Oluwaferanmi</a>
+  <a class="nav-item nav-link" href="#">Philemon</a>
+  <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">2120933</a>
 </nav>
-        <p class = "text-center">ClubAberdeen 2022</p>
+        <p class="text-center">ClubAberdeen 2022</p>
 
     </div>
 </footer>

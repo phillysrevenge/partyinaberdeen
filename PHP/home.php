@@ -68,8 +68,8 @@ catch(PDOException $e){
             ?>
 
             </div>
-            <form class="d-flex ml-auto">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex ml-auto" action="search.php" method="post">
+                <input class="form-control me-2" type="search" placeholder="Search Stories" aria-label="Search" name="category">
                 <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
         </div>
@@ -131,9 +131,9 @@ catch(PDOException $e){
                     class="card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Club Name: <?php echo $story["club"]; ?></h5>
-                    <p class="card-text" style="height: 150px;">Caption: <?php echo $story["caption"]; ?></p>
+                    <p class="card-text" style="height: 170px;">Caption: <?php echo $story["caption"]; ?></p>
                     <p class="card-text" style="height: 50px;">Location: <?php echo $story["location"]; ?></p>
-                    <p class="card-text" style="height: 40px;">Author: Anonymous</p> <!--I made the authors of the post anonymous as a lot of people club and they want to keep it confidential-->
+                    <p class="card-text" style="height: 40px;">Author: <?php echo $story["author"]; ?></p> <!--I made the authors of the post anonymous as a lot of people club and they want to keep it confidential-->
 
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
@@ -176,13 +176,13 @@ catch(PDOException $e){
     </div>
 
     <footer>
-    <div class="socialmedia">
-        <ul class="">
-
-            <l1><a href=""><img src="../images.png" alt="" class="icons"></a></l1>
-
-
-        </ul>
+    <div class="socialmedia" style="width:100%; display:flex; flex-direction:column; justify-content:center;">
+    <nav class="nav nav-pills nav-justified justify-content-center">
+  <a class="nav-item nav-link" href="#">Fawole</a>
+  <a class="nav-item nav-link" href="#">Oluwaferanmi</a>
+  <a class="nav-item nav-link" href="#">Philemon</a>
+  <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">2120933</a>
+</nav>
         <p class="text-center">ClubAberdeen 2022</p>
 
     </div>

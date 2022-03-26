@@ -37,9 +37,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(isset($_POST["location"])) $location = $_POST["location"];
             if(isset($_POST["category"])) $category = $_POST["category"];
             if(isset($_POST["caption"])) $caption = $_POST["caption"];
+            if(isset($_POST["author"])) $author = $_POST["author"];
             $picture = $filename;
 
-            $sql = "INSERT INTO posts (club, location, category, caption, picture) VALUES ('$club', '$location', '$category', '$caption', '$picture')";
+            $sql = "INSERT INTO posts (club, location, category, caption, picture, author) VALUES ('$club', '$location', '$category', '$caption', '$picture', '$author')";
             $result = $pdo->exec($sql);
 
             header("location: testhome.php");
@@ -67,6 +68,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>File Upload</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="stylesheet" href="../CSS/Party.css">
+    <link rel="stylesheet" href="../CSS/signup.css">
 </head>
 
 <body>
@@ -140,6 +143,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <textarea name="caption" id="caption" cols="90" rows="10" class="form-control"></textarea>
                 </div>
             </div>
+
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <h4><label for="author">Author</label></h4>
+                </div>
+                <div class="col-md-7">
+                    <input type="text" name="author" id="author" class="form-control">
+                </div>
+            </div>
             <div class="row mt-5">
                 <div class="col-md-4">
                     <button class="bg-secondary">Post Story</button>
@@ -158,5 +170,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
 </body>
+<footer>
+    <div class="socialmedia" style="width:100%; display:flex; flex-direction:column; justify-content:center;">
+    <nav class="nav nav-pills nav-justified justify-content-center">
+  <a class="nav-item nav-link" href="#">Fawole</a>
+  <a class="nav-item nav-link" href="#">Oluwaferanmi</a>
+  <a class="nav-item nav-link" href="#">Philemon</a>
+  <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">2120933</a>
+</nav>
+        <p class="text-center">ClubAberdeen 2022</p>
+
+    </div>
+</footer>
 
 </html>
