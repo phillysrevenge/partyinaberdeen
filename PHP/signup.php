@@ -144,7 +144,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-              <a href="homenormal.php" class="nav-item nav-link">Home</a>
+              <a href="index.php" class="nav-item nav-link">Home</a>
               <a href="login.php" class="nav-item nav-link">Login</a>
                 
 
