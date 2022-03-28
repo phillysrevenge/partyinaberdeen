@@ -146,9 +146,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <input type="file" name="picture" class="form-control">
                 </div>
             </div>
-            <div class="row justify-content-center mt-3 ml-2">
-                <button class="form-control col-md-4 ">Add File</button>
-            </div>
+            
 
             <div class="row mt-5">
                 <div class="col-md-4">

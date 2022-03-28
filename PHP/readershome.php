@@ -75,7 +75,7 @@ catch(PDOException $e){
 
             </div>
             <form class="d-flex ml-auto" action="search.php" method="post">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2" type="search" placeholder="Search stories" aria-label="Search" name="category">
                 <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
         </div>
