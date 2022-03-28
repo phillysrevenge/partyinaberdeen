@@ -33,6 +33,7 @@ session_start();
     </nav>
     
 <body>
+    <!--Knowledge of how to implement a background video was gotten from W3schools URL for transparency: https://www.w3schools.com/howto/howto_css_fullscreen_video.asp-->
     
     <video autoplay muted loop id="myVideo">
         <source src="../video/party.mp4" type="video/mp4">
@@ -42,12 +43,13 @@ session_start();
     <div class="content mt-5">
         
         <h1>Party In Aberdeen!</h1>
-        <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis
-            neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine
-            molestiae, ad mutat oblique delicatissimi pro.</p>
+        <p>Welcom to Aberdeen if you are new here. Aberdeen boasts of a good nightlife, you can view clubs and see stories from tourists and locals who have visited those clubs.
+            Sounds great? <span ><a href="signup.php" style="colour:orange;">SIGNUP</a></span>  to see it all!
+        </p>
         <button id="controlvid" onclick="myFunction()">Pause</button>
     </div>
 
+    <!--Learnt how to implement the javascript code below from W3schools URL for transparency: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_fullscreen_video-->
     <script>
         var video = document.getElementById("myVideo");
         var btn = document.getElementById("controlvid");
