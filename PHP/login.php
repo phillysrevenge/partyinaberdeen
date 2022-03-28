@@ -50,10 +50,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             //since i have all the parameters, i'll execute the statement.
             if($stmt->execute()){
                 //used the two echos below for debugging.
-                echo "prepare sql";
+                //echo "prepare sql";
                 if($stmt->rowCount() == 1){
                     //if a user exists retrieve the details and verify them.
-                    echo "found user";
+                  //s  echo "found user";
                     if($row = $stmt->fetch()){
                         //retrieve the details from the row in the DB
                         $id = $row["id"];
