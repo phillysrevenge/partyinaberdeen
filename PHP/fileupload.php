@@ -23,10 +23,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $file_type = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
 
     //if the file name to be uploaded already exists in DB, display the error below.
-    if(file_exists($filename)){
+    /*if(file_exists($filename)){
         echo "Hey Buddy this file already exists";
         $uploadOk = 0;
-    }
+    }*/
     //verify file size.
     if($_FILES["picture"]["size"] > 1000000){
         echo "Hey buddy the file is too large.";
