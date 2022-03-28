@@ -51,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $passworderror = "Kindly enter a password aight?";
     }
     //if it was not empty, i'll validate the length too for additional security
-    elseif(strlen(trim($_POST["password"])) <4){
+    elseif(strlen(trim($_POST["password"])) <8){
         $passworderror = "Hey buddy password is too short you can be hacked";
     }
     else{
@@ -89,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
          $stmt->bindParam(":phone", $param_phone, PDO::PARAM_STR);
          $stmt->bindParam(":role", $param_role, PDO::PARAM_STR);
 
-         //give the param_ the values from the form
+         //give the param_.. the values from the form
          //recall above i already gave the $username variable the values trimmed from the form?
          $param_username = $username;
          $param_password = password_hash($password, PASSWORD_DEFAULT); //This code will encrypt the pasword using PHP default hashing.
@@ -100,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
          //i can execute my statement in peace now
          if($stmt->execute()){
              //Take the tourist to the login page to input his/her credentials!
-             header("location: logintestrole.php");
+             header("location: login.php");
             }
          else{
              echo " Hey buddy, take a breath and try again.";
@@ -119,13 +119,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 
 
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -137,6 +130,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="../CSS/signup.css">
+    <link rel="stylesheet" href="../CSS/Party.css">
+
 </head>
 
 <body>
@@ -149,10 +144,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-            <a href="homenormal.php" class="nav-item nav-link">Home</a>
-                <a href="fileupload.php" class="nav-item nav-link">Post</a>
-                <a href="login.php" class="nav-item nav-link">Login</a>
-                <a href="logout.php" class="nav-item nav-link">Signout</a>
+              <a href="homenormal.php" class="nav-item nav-link">Home</a>
+              <a href="login.php" class="nav-item nav-link">Login</a>
+                
 
             </div>
         </div>
@@ -161,7 +155,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <main class="container mt-5 cont">
         <div class="form-header text-center mt-3">
             <h1 class="text-center">Create a New Account</h1>
-            <p>Join our Comunity and enjoy partying in Aberdeen! Already have one? <a href="">Signin</a></p>
+            <p>Join our Comunity and enjoy partying in Aberdeen! Already have one? <a href="login.php">Signin</a></p>
         </div>
     
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="row" method="post">
@@ -189,44 +183,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
                 <div class="form-group mt-5">
                     <label for="Role">Select a Role</label>
-                <select name="role" id="Role" class="form-control <?php echo(!empty($roleerror)) ? 'is-invalid' : ''; ?>" value= "<?php echo $role; ?>">
-                    <option value="admin">--Select a role--</option>
-                   <!-- <option value="admin">Admin</option> -->
-                    <option value="storyteller">Story Teller</option>
-                    <option value="reader">Reader</option>
-                </select>
-                <span class="invalid-feedback"><?php echo $roleerror; ?></span>
+                    <select name="role" id="Role" class="form-control <?php echo(!empty($roleerror)) ? 'is-invalid' : ''; ?>" value= "<?php echo $role; ?>">
+                      <option value="admin">--Select a role--</option>
+                     <!-- <option value="admin">Admin</option> -->
+                     <option value="storyteller">Story Teller</option>
+                     <option value="reader">Reader</option>
+                    </select>
+                   <span class="invalid-feedback"><?php echo $roleerror; ?></span>
 
                 </div>
                 <div class="mt-5">
                     <input type="checkbox" name="" id=""> I agree with the Terms of Use.
                 </div>
                 <div class="mt-5 mb-3">
-                <input type="submit" class="btn btn-primary" value="Submit">
+                 <input type="submit" class="btn btn-primary" value="Submit">
                 </div>
            </div>
  
-                <div class="col-md-6 col-sm-6">
+            <div class="col-md-6 col-sm-6">
                 <img src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cGFydHl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
                     alt="" class="img-fluid img-thumbnail">
             </div>
-            </form>
+        </form>
            
    
         
     </main>
     <footer>
-        <div class="socialmedia text-center">
+  <div class="socialmedia" style="width:100%; display:flex; flex-direction:column; justify-content:center;">
+    <nav class="nav nav-pills nav-justified justify-content-center">
+      <a class="nav-item nav-link" href="#">Fawole</a>
+      <a class="nav-item nav-link" href="#">Oluwaferanmi</a>
+      <a class="nav-item nav-link" href="#">Philemon</a>
+      <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">2120933</a>
+   </nav>
+        <p class="text-center">ClubAberdeen 2022</p>
 
-
-            <a href=""><img src="../images.png" alt="" class="icons"></a>
-
-
-
-            <p>ClubAberdeen 2022</p>
-
-        </div>
-    </footer>
+  </div>
+</footer>
 
     <!--I will like to clearly state that the links below are javascript codes from bootstrap official site and are included as advised on getbootstrap.com. I claim no ownership-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

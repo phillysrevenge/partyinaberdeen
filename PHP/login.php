@@ -3,15 +3,18 @@
  session_start();
  //check if the user is logged in
  if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: Homepage.php");
+    header("location: logout.php");
     exit;
- }
+}
+ 
+
+
  //include the database connection file
  require_once "dbconnection.php";
 
  //set the variables as empty initially.
- $email = $password = "";
- $emailerror = $passworderror = $loginerror = "";
+ $email = $password = $role =  "";
+ $emailerror = $passworderror = $loginerror = $roleerror = "";
  //check if the method is post
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     //verify email field
@@ -28,43 +31,67 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     else{
         $password = trim($_POST["password"]);
     }
+    if(empty(trim($_POST["role"]))){
+        $roleerror = "Please select a role buddy";
+    }
 
     //verify no errors in the form before querying DB
 
-    if(empty($emailerror) && empty($passworderror)){
+    if(empty($emailerror) && empty($passworderror) && empty($roleerror)){
         //if no errors, check the database for th user based on the password wntered
-        $sql = "SELECT id, email, password FROM users WHERE email = :email";
+        $sql = "SELECT id, email, password, role FROM users WHERE email = :email AND role = :role";
         if($stmt = $pdo->prepare($sql)){
             //I will attach the value :email to a parameter
             $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+            $stmt->bindParam(":role", $param_role, PDO::PARAM_STR);
             //I will set the parameter below
             $param_email = trim($_POST["email"]);
+            $param_role = trim($_POST["role"]);
             //since i have all the parameters, i'll execute the statement.
             if($stmt->execute()){
+                //used the two echos below for debugging.
                 echo "prepare sql";
                 if($stmt->rowCount() == 1){
+                    //if a user exists retrieve the details and verify them.
                     echo "found user";
                     if($row = $stmt->fetch()){
                         //retrieve the details from the row in the DB
                         $id = $row["id"];
                         $email = $row["email"];
+                        $role = $row["role"];
                         $hashed_password = $row["password"];
 
                         if(password_verify($password, $hashed_password)){
                             //the above code compares the password entered with the hashed one in DB
-                            //if it's the same, store it in a session.
+                            //if it's the same, store the following in a session.
                             session_start();
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["email"] = $email;
-                            //redirect the user to the homepage.
-                            header("location: homenormal.php");
+                            $_SESSION["role"] = $role;
+                            //redirect the user to the homepage based on their roles. Knowledge of this gotten from w3schools.com
+                            switch($role){
+                                case "admin":
+                                header("location: home.php");
+                                break;
+
+                                case "reader":
+                                header("location: readershome.php");
+                                break;
+
+                                case "storyteller":
+                                 header("location: home.php");   
+                            }
+
+                            
                         }
+                        //if the credentials are wrong display an error
                         else{
                             $loginerror = "Invalid email or password buddy."; 
                         }
                     }
                 }
+                //if you cant find a user, echo the error below.
                 else{
                     $loginerror = "Seems like you entered wrong credentials.";
                 }
@@ -108,10 +135,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-                <a href="" class="nav-item nav-link">Home</a>
+                <!--<a href="" class="nav-item nav-link">Home</a>
                 <a href="" class="nav-item nav-link">Contact Us</a>
-                <a href="" class="nav-item nav-link">Login</a>
-                <a href="" class="nav-item nav-link">Signout</a>
+                <a href="" class="nav-item nav-link">Login</a> -->
+                <!--This makes the navigation bar change based on the role and is not hardcoded-->
+                <?php
+                include('navs.php');
+            ?>
+
+               
 
             </div>
         </div>
@@ -132,14 +164,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <span class="invalid-feedback"><?php echo $passworderror; ?> </span>
                 </div>
                 <div class="mt-5">
+                 <select name="role" id="role" class="<?php echo (!empty($roleerror)) ? 'is-invalid' : ''; ?>">
+                     <option value="admin">Admin</option>
+                     <option value="storyteller">Story Teller</option>
+                     <option value="reader">Reader</option>
+                 </select>
+                </div>
+                <div class="mt-5">
                     <input type="submit" class="btn btn-lg bg-secondary" value="Login">
                 </div>
-                <p class="text-right"><a href="" class="password">Forgot Password?</a></p>
+                <p class="text-right"><a href="password.php" class="password">Forgot Password?</a></p>
                 <P class="text-center mt-5">New User? <a href="signup.php" class="password">Join Now</a></P>
-
+            </form>
 
         </div>
-        </form>
+        
         </div>
     </main>
 
@@ -162,14 +201,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 </body>
 <footer>
-    <div class="socialmedia">
-        <ul class="icons text-center">
-
-            <l1><a href=""><img src="../images.png" alt="" class="icons"></a></l1>
-
-
-        </ul>
-        <p>ClubAberdeen 2022</p>
+   <div class="socialmedia" style="width:100%; display:flex; flex-direction:column; justify-content:center;">
+     <nav class="nav nav-pills nav-justified justify-content-center">
+      <a class="nav-item nav-link" href="#">Fawole</a>
+      <a class="nav-item nav-link" href="#">Oluwaferanmi</a>
+      <a class="nav-item nav-link" href="#">Philemon</a>
+      <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">2120933</a>
+     </nav>
+        <p class="text-center">ClubAberdeen 2022</p>
 
     </div>
 </footer>

@@ -1,8 +1,9 @@
 <?php
 //The HTML in this code is almost irrelevant except for styling purpose
+//Start session and validate if the user is logged in and has access to this page based on their role.
 session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: logintestrole.php");
+    header("location: login.php");
    exit; 
 }
 if(!isset($_SESSION["role"]) || $_SESSION["role"] != "admin"){
@@ -26,7 +27,7 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] != "admin"){
 </head>
 </head>
 <body>
-<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #6f2232;">
+    <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #6f2232;">
 
         <a class="navbar-brand" href="#">PartyAberdeen</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navs">
@@ -35,6 +36,7 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] != "admin"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
+                 <!--This makes the navigation bar change based on the role and is not hardcoded-->
             <?php
                 include('navs.php');
             ?>
@@ -51,13 +53,16 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] != "admin"){
     <H1 class="text-center">USERS TABLE</H1>
 
    
-<?php
-require_once "dbconnection.php";
+ <?php
+ //invoke database connection file. 
+ require_once "dbconnection.php";
 
-try{
+ try{
+     //retrieve everything from the users table
  $sql = "SELECT * FROM users";
  $result = $pdo->query($sql);
   if($result->rowCount() >0){
+      //Display the results in a tabular form
      echo "<table>";
         echo "<tr>";
            echo "<th>id</th>";
@@ -68,7 +73,9 @@ try{
            echo "<th>role</th>";
            echo "<th>created_at</th>";
         echo "</tr>" ;
+        //Fetch all the values in the rows
       while($row = $result->fetch()){
+          //retrieve the values in the rows and display them.
          echo "<tr>";
              echo"<td>" . $row['id'] . "</td>";
              echo"<td>" . $row['username'] . "</td>";
@@ -87,19 +94,20 @@ try{
     else{
         echo "Something happened buddy sorry!";
     }
-}catch(PDOException $e){
+ }catch(PDOException $e){
     die("ERROR: could not execute $sql." .$e->getMessage());
-}
+ }
 
 
-?>
+ ?>
+ <!--The below code does the same thing as the above just for a different table.-->
 
-<h1 class="text-center">Posts Table</h1>
+ <h1 class="text-center">Posts Table</h1>
 
-<?php
-require_once "dbconnection.php";
+ <?php
+ require_once "dbconnection.php";
 
-try{
+ try{
  $sql = "SELECT * FROM posts";
  $result = $pdo->query($sql);
   if($result->rowCount() >0){
@@ -130,29 +138,29 @@ try{
     else{
         echo "Something happened buddy sorry!";
     }
-}catch(PDOException $e){
+ }catch(PDOException $e){
     die("ERROR: could not execute $sql." .$e->getMessage());
-}
+ }
 
 
-?>
+ ?>
 
 
 
-<footer>
+ <footer>
     <div class="socialmedia" style="width:100%; display:flex; flex-direction:column; justify-content:center;">
-    <nav class="nav nav-pills nav-justified justify-content-center">
-  <a class="nav-item nav-link" href="#">Fawole</a>
-  <a class="nav-item nav-link" href="#">Oluwaferanmi</a>
-  <a class="nav-item nav-link" href="#">Philemon</a>
-  <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">2120933</a>
-</nav>
+     <nav class="nav nav-pills nav-justified justify-content-center">
+       <a class="nav-item nav-link" href="#">Fawole</a>
+       <a class="nav-item nav-link" href="#">Oluwaferanmi</a>
+       <a class="nav-item nav-link" href="#">Philemon</a>
+       <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">2120933</a>
+     </nav>
         <p class="text-center">ClubAberdeen 2022</p>
 
     </div>
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+ </footer>
+ <!--I claim no ownership to the code below, and they are part of the open source bootstrap library for additional functionality-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"

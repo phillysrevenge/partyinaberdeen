@@ -5,7 +5,7 @@ session_start();
 //confirm the user is logged in, if not send him to the login page.
 
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: logintestrole.php");
+    header("location: login.php");
     exit;
 }
 
@@ -20,7 +20,7 @@ $emailerror = $newpassworderror = $confirmpassworderror = "";
 
 //now we process the form data
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // first validate the email field
+    // first validate the email field and be sure it's not empty
     if(empty(trim($_POST["email"]))){
        $emailerror = "Please enter a valid email address.";
     }
@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $email = trim($_POST["email"]);
     }
 
-    //validate the password field also.
+    //validate the password field also and confirm it's not empty.
     if(empty(trim($_POST["newpassword"]))){
         $newpassworderror = "Please enter a password";
     }
@@ -36,11 +36,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $newpassword = trim($_POST["newpassword"]);
     }
 
-    //validate the confirmpassword field also
+    //validate the confirmpassword field also and confirm it's not empty.
     if(empty(trim($_POST["confirmpassword"]))){
         $confirmpassworderror = "Please confirm the password entered above.";
     }
     else{
+        //verify both password fields are the same.
         $confirmpassword = trim($_POST["confirmpassword"]);
         if(empty($newpassworderror) && ($newpassword != $confirmpassword)){
             $confirmpassworderror = "The passwords did not match.";
@@ -111,11 +112,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-            <?php
+               <!--This makes the navigation bar change based on the role and is not hardcoded--> 
+              <?php
                 include('navs.php');
-            ?>
-
-
+              ?>
             </div>
         </div>
     </nav>
@@ -127,20 +127,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <h5>Please fill the form below to recover your password.</h3>
         </div>
         <div>
+            <!--The form is a self referencing form. The enctype is really important for the file to upload.-->
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="mt-5" method="post">
                 <div class="">
                     <div>
-                    <input type="email" name="email" placeholder="Email" class="form-control col-md-8 <?php echo (!empty($emailerror)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
-                    <span class="invalid-feedback"><?php echo $emailerror; ?></span>
-                </div>
-                    <div>
-                    <input type="password" name="newpassword" placeholder="Password" class="form-control col-md-8 mt-5 <?php echo (!empty($newpassworderror)) ? 'is-invalid' : ''; ?>" value="<?php echo $newpassword; ?>">
-                    <span class="invalid-feedback"><?php echo $newpassworderror; ?></span>
-                </div>
-                    <div>
-                    <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control col-md-8 mt-5 <?php echo (!empty($confirmpassworderror)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirmpassword; ?>">
-                    <span class="invalid-feedback"><?php echo $confirmpassworderror; ?></span>
-                </div>
+                      <input type="email" name="email" placeholder="Email" class="form-control col-md-8 <?php echo (!empty($emailerror)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                      <!--echo the error in the form field.Should be visible enough to the user!-->
+                      <span class="invalid-feedback"><?php echo $emailerror; ?></span>
+                    </div>
+                   <div>
+                     <input type="password" name="newpassword" placeholder="Password" class="form-control col-md-8 mt-5 <?php echo (!empty($newpassworderror)) ? 'is-invalid' : ''; ?>" value="<?php echo $newpassword; ?>">
+                     <!--echo the error in the form field.Should be visible enough to the user!-->
+                     <span class="invalid-feedback"><?php echo $newpassworderror; ?></span>
+                    </div>
+                   <div>
+                     <input type="password" name="confirmpassword" placeholder="Confirm Password" class="form-control col-md-8 mt-5 <?php echo (!empty($confirmpassworderror)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirmpassword; ?>">
+                     <!--echo the error in the form field.Should be visible enough to the user!-->
+                     <span class="invalid-feedback"><?php echo $confirmpassworderror; ?></span>
+                   </div>
                     <input type="submit" class="btn btn-lg bg-secondary mt-5" value="Reset">
                 </div>
             </form>
@@ -148,16 +152,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </main>
 
     <footer>
-        <div class="socialmedia">
-            <ul class="icons">
-
-                <l1><a href=""><img src="../images.png" alt="" class="icons"></a></l1>
-
-
-            </ul>
-            <p class="text-center">ClubAberdeen 2022</p>
-
-        </div>
+       <div class="socialmedia" style="width:100%; display:flex; flex-direction:column; justify-content:center;">
+         <nav class="nav nav-pills nav-justified justify-content-center">
+           <a class="nav-item nav-link" href="#">Fawole</a>
+           <a class="nav-item nav-link" href="#">Oluwaferanmi</a>
+           <a class="nav-item nav-link" href="#">Philemon</a>
+           <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">2120933</a>
+         </nav>
+          <p class="text-center">ClubAberdeen 2022</p>
+       </div>
     </footer>
 
     <!--I will like to clearly state that the links below are javascript codes from bootstrap official site and are included as advised on getbootstrap.com. I claim no ownership-->

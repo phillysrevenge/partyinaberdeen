@@ -1,16 +1,20 @@
 <?php 
  session_start();
   /*if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: logintestrole.php");
+    header("location: login.php");
+    chose to allow all users access this page even if not logged in.
     
     exit;
    }*/
+   //invoke the connection file.
    require_once "dbconnection.php";
    try{
+     //retrieve everything from the post table.
        $sql = "SELECT * FROM posts";
        $stmt = $pdo ->prepare($sql);
        $stmt->execute();
        $stories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+       //count the retrieved items.
        $count = count($stories);
 
        //$pdo = null;
@@ -23,6 +27,7 @@
 <?php
 require_once "dbconnection.php";
 try{
+    //retrieve everything from the clubs table.
     $query = "SELECT * FROM clubs";
     $stmt = $pdo ->prepare($query);
     $stmt->execute();
@@ -40,7 +45,7 @@ catch(PDOException $e){
 
 <!DOCTYPE html>
 <html lang="en">
-
+<!--All images used for the clubs and some stories were gotten free from https://unsplash.com/-->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,12 +68,13 @@ catch(PDOException $e){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-            <?php
+                 <!--This makes the navigation bar change based on the role and is not hardcoded-->
+              <?php
                 include('navs.php');
-            ?>
+              ?>
 
             </div>
-            <form class="d-flex ml-auto">
+            <form class="d-flex ml-auto" action="search.php" method="post">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
@@ -78,6 +84,8 @@ catch(PDOException $e){
     <h1 class="text-center mt-5">Party in Aberdeen</h1>
     <div class="container mt-5">
         <div class="row justify-content-between">
+            <!--This code below makes the page dynamic and retrieves users posts from the database and displays them on the website.-->
+            <!--it also create a loop and display all retrieved clubs and displays them according to the style below. -->
         <?php
             foreach($clubs as $club){?>
             
@@ -92,6 +100,8 @@ catch(PDOException $e){
                 </div>
             </div>
             <?php }?>
+              <!--Prior to the page being dynamic, the code below shows the hardcoded pictures-->
+        <!--Left them here for your reference-->
            
            <!-- <div class="col-3.5 col-md-3 col-sm-12" style="width: 18rem;">
                 <img src="https://images.unsplash.com/photo-1602618135005-165bc6b7e847?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y2x1YnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
@@ -118,6 +128,8 @@ catch(PDOException $e){
         
         <h1 class="mt-5 text-center">View Stories</h1>
         <div class="row mt-5">
+            <!--This code below makes the page dynamic and retrieves users posts from the database and displays them on the website.-->
+            <!--it also create a loop and display all retrieved stories and displays them according to the style below. -->
          <?php
             foreach($stories as $story){?>
 
@@ -169,8 +181,9 @@ catch(PDOException $e){
         </div>-->
 
     </div>
-            </div>
+</div>
 
+        <!--I claim no ownership to the code below, and they are part of the open source bootstrap library for additional functionality-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -183,16 +196,16 @@ catch(PDOException $e){
 
 </body>
 <footer>
-    <div class="socialmedia" style="width:100%; display:flex; flex-direction:column; justify-content:center;">
+  <div class="socialmedia" style="width:100%; display:flex; flex-direction:column; justify-content:center;">
     <nav class="nav nav-pills nav-justified justify-content-center">
-  <a class="nav-item nav-link" href="#">Fawole</a>
-  <a class="nav-item nav-link" href="#">Oluwaferanmi</a>
-  <a class="nav-item nav-link" href="#">Philemon</a>
-  <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">2120933</a>
-</nav>
+      <a class="nav-item nav-link" href="#">Fawole</a>
+      <a class="nav-item nav-link" href="#">Oluwaferanmi</a>
+      <a class="nav-item nav-link" href="#">Philemon</a>
+      <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">2120933</a>
+    </nav>
         <p class="text-center">ClubAberdeen 2022</p>
 
-    </div>
+  </div>
 </footer>
 
 </html>

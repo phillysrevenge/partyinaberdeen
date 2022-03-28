@@ -1,25 +1,33 @@
 <?php 
+//start session and verify the user is logged in and has access to this page based on role.
 session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: logintestrole.php");
+    header("location: login.php");
    exit; 
+   //the code above checks if the user is loggedin and if not, redirects the user to the login page.
 }
 if(!isset($_SESSION["role"]) || $_SESSION["role"] == "reader"){
     header("location: logout.php");
 }
+//The code above verifies the user role is not reader as they do not have access to this page. Logs them out if user is a reader
 
+//Invoke the database connection file
 require_once "dbconnection.php";
+//The code below only executes if the form method is post.
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $dir = "Uploads/";
+    // the code above specifies the directory where images will be stored is uploads.
     $filename = $dir . basename($_FILES["picture"]["name"]);
     $uploadOk = 1;
     $file_type = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
 
+    //if the file name to be uploaded already exists in DB, display the error below.
     if(file_exists($filename)){
         echo "Hey Buddy this file already exists";
         $uploadOk = 0;
     }
+    //verify file size.
     if($_FILES["picture"]["size"] > 1000000){
         echo "Hey buddy the file is too large.";
         $uploadOk = 0;
@@ -28,9 +36,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       echo "File must be a jpg, jpeg, png, pdf, or gif format";
       $uploadOk = 0;
     }*/
+    
+    //verify there are no errors
     if($uploadOk = 0){
         echo "Sorry Buddy file was not uploaded.";
     }
+    //i noe errors, store the users input in the form in variables.
     else{
         if(move_uploaded_file($_FILES["picture"]["tmp_name"], $filename)){
             if(isset($_POST["clubname"])) $club = $_POST["clubname"];
@@ -39,13 +50,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(isset($_POST["caption"])) $caption = $_POST["caption"];
             if(isset($_POST["author"])) $author = $_POST["author"];
             $picture = $filename;
+            //the line above retrieves the filename and assigns it to a variable.
 
+            // Insert into database with the SQL command below.
             $sql = "INSERT INTO posts (club, location, category, caption, picture, author) VALUES ('$club', '$location', '$category', '$caption', '$picture', '$author')";
             $result = $pdo->exec($sql);
 
-            header("location: testhome.php");
+            //if successful, redirect the user to the homepage where they can see the upload. Just like how instagram does!
+            header("location: home.php");
         
         }
+            //if upload was not successful, echo an error
         else{
             echo "Sorry could not upload";
             exit;
@@ -82,10 +97,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-            <a href="testhome.php" class="nav-item nav-link">Home</a>
-                <a href="fileupload.php" class="nav-item nav-link">Post</a>
-                <a href="login.php" class="nav-item nav-link">Login</a>
-                <a href="logout.php" class="nav-item nav-link">Signout</a>
+                <!--This makes the navigation bar change based on the role and is not hardcoded-->
+            <?php
+                include('navs.php');
+            ?>
 
             </div>
         </div>
@@ -159,7 +174,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </form>
     </div>
-
+    <!--I claim no ownership to the code below, and they are part of the open source bootstrap library for additional functionality-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

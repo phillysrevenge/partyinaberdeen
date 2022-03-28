@@ -1,17 +1,25 @@
 <?php
 session_start();
+// start of session
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: logintestrole.php");
+    header("location: login.php");
    exit; 
+   //the code above checks if the user is loggedin and if not, redirects the user to the login page.
 }
 if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "admin"){
     header("location: logout.php");
 }
+//The code above verifies the user role and determines if they have access to th page.
+
+//Invoke the database connection file.
 
 require_once "dbconnection.php";
+//The code below only executes if the form method is post.
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $dir = "Uploads/";
+    // the code above specifies the directory where images will be stored is uploads.
     $filename = $dir . basename($_FILES["picture"]["name"]);
+    // get the file name, this will be used to store in DB.
     $uploadOk = 1;
     $file_type = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
@@ -24,17 +32,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     else{
         if(move_uploaded_file($_FILES["picture"]["tmp_name"], $filename)){
+            //if upload is successful, assign the valuse on the left to the variables on the right.
             if(isset($_POST["clubname"])) $club = $_POST["clubname"];
             if(isset($_POST["location"])) $location = $_POST["location"];
             if(isset($_POST["category"])) $category = $_POST["category"];
             $picture = $filename;
 
+            //Sql statement to insert into database.
             $sql = "INSERT INTO clubs (clubname, Location, Category, picture) VALUES ('$club', '$location', '$category', '$picture')";
             $result = $pdo->exec($sql);
 
-            header("location: testhome.php");
+            header("location: home.php");
         
         }
+        //If file is not uploaded, display the error below.
         else{
             echo "Sorry could not upload";
             exit;
@@ -56,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <link rel="stylesheet" href="../CSS/Party.css">
     <link rel="stylesheet" href="../CSS/signup.css">
 </head>
-
+<!--Boostrap is used for my styling so a lot of divs with classes.-->
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #6f2232;">
 
@@ -67,6 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
+                <!--This makes the navigation bar change based on the role and is not hardcoded-->
             <?php
                 include('navs.php');
             ?>
@@ -75,6 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
     </nav>
     <div class="container mt-5">
+        <!--The form is a self referencing form. The enctype is really important for the file to upload.-->
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-4">
@@ -125,7 +138,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </form>
     </div>
-
+    <!--I claim no ownership to the code below, and they are part of the open source bootstrap library for additional functionality-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

@@ -1,27 +1,33 @@
 <?php 
-session_start();
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: logintestrole.php");
+ session_start();
+  // start of session
+ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
     
-    
-}
+    //the code above checks if the user is loggedin and if not, redirects the user to the login page.
+ }
 ?>
 <?php
-require_once "dbconnection.php";
-$name = $_POST['category'];
-try{
+//Invoke the database connection file
+ require_once "dbconnection.php";
+ $name = $_POST['category'];
+  try{
+      //query the database using the statement below and display results similar(like) to what the user searched for.
     $sql = "SELECT * FROM posts WHERE category LIKE '%{$name}'";
     
     $stmt = $pdo ->prepare($sql);
+    //execute the statement
     $stmt->execute();
+    //fetch items
     $stories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //count the items retrieved
     $count = count($stories);
 
    $pdo = null;
-}
-catch(PDOException $e){
+  }
+ catch(PDOException $e){
     echo $e->getMessage();
-}
+ }
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +44,7 @@ catch(PDOException $e){
     <link rel="stylesheet" href="../CSS/signup.css">
 </head>
 <body>
-<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #6f2232;">
+    <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #6f2232;">
 
         <a class="navbar-brand" href="#">PartyAberdeen</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navs">
@@ -47,9 +53,10 @@ catch(PDOException $e){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-            <?php
+                <!--This makes the navigation bar change based on the role and is not hardcoded-->
+             <?php
                 include('navs.php');
-            ?>
+             ?>
 
             </div>
             <form class="d-flex ml-auto" action="search.php" method="post">
@@ -59,15 +66,18 @@ catch(PDOException $e){
         </div>
     </nav>
 
-<div class="container">
-  <div class="row mt-5">
+    <div class="container">
+        <div class="row mt-5">
+            <!--create a loop and display all retrieved stories according to the style below. -->
          <?php
             foreach($stories as $story){?>
+        
 
             <div class=" col-md-6" style="width: 18rem;">
                 <img style="height: 170px;" src="<?php echo $story["picture"]?>"
                     class="card-img-top img-thumbnail img-fluid" alt="...">
                 <div class="card-body">
+                    <!--retrieve from table columns and rows and echo them-->
                     <h5 class="card-title">Club Name: <?php echo $story["club"]; ?></h5>
                     <p class="card-text" style="height: 170px;">Caption: <?php echo $story["caption"]; ?></p>
                     <p class="card-text" style="height: 50px;">Location: <?php echo $story["location"]; ?></p>
@@ -78,10 +88,10 @@ catch(PDOException $e){
                 </div>
             </div>
             <?php } ?>
-            </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+       </div>
+   </div>
+    <!--I claim no ownership to the code below, and they are part of the open source bootstrap library for additional functionality-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
@@ -93,15 +103,15 @@ catch(PDOException $e){
 </body>
             
 <footer>
-    <div class="socialmedia" style="width:100%; display:flex; flex-direction:column; justify-content:center;">
+  <div class="socialmedia" style="width:100%; display:flex; flex-direction:column; justify-content:center;">
     <nav class="nav nav-pills nav-justified justify-content-center">
-  <a class="nav-item nav-link" href="#">Fawole</a>
-  <a class="nav-item nav-link" href="#">Oluwaferanmi</a>
-  <a class="nav-item nav-link" href="#">Philemon</a>
-  <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">2120933</a>
-</nav>
+      <a class="nav-item nav-link" href="#">Fawole</a>
+      <a class="nav-item nav-link" href="#">Oluwaferanmi</a>
+      <a class="nav-item nav-link" href="#">Philemon</a>
+      <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">2120933</a>
+   </nav>
         <p class="text-center">ClubAberdeen 2022</p>
 
-    </div>
+  </div>
 </footer>
 </html>
