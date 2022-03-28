@@ -1,4 +1,5 @@
 <?php
+session_start();
 //I include the database connection file.
 require_once "dbconnection.php";
 
@@ -144,8 +145,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-              <a href="index.php" class="nav-item nav-link">Home</a>
-              <a href="login.php" class="nav-item nav-link">Login</a>
+            <?php
+                include('navs.php');
+            ?>
                 
 
             </div>

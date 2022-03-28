@@ -32,6 +32,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     //if user is not loggedin, just display this.
 }else{
     echo "
+        <a href=\"index.php\" class=\"nav-item nav-link\">Home</a>
          <a href=\"login.php\" class=\"nav-item nav-link\">Login</a>
          <a href=\"fileupload.php\" class=\"nav-item nav-link\">About</a>
          <a href=\"password.php\" class=\"nav-item nav-link\">Change Password</a>";}
