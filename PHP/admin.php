@@ -10,7 +10,7 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] != "admin"){
     header("location: logout.php");
 }
 ?>
-
+<!--Bootstrap was used mostly to style this application-->
 <!DOCTYPE html>
 <html lang="en">
 <head>

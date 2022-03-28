@@ -110,7 +110,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 ?>
 
-
+<!--Bootstrap was used mostly to style this application-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -135,9 +135,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
-                <!--<a href="" class="nav-item nav-link">Home</a>
-                <a href="" class="nav-item nav-link">Contact Us</a>
-                <a href="" class="nav-item nav-link">Login</a> -->
+                
                 <!--This makes the navigation bar change based on the role and is not hardcoded-->
                 <?php
                 include('navs.php');

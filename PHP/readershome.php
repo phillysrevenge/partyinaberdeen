@@ -42,7 +42,7 @@ catch(PDOException $e){
 ?>
 
 
-
+<!--Bootstrap was used mostly to style this application-->
 <!DOCTYPE html>
 <html lang="en">
 <!--All images used for the clubs and some stories were gotten free from https://unsplash.com/-->

@@ -1,4 +1,5 @@
 <?php 
+//start session and check if the user is logged in
 session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
@@ -41,6 +42,7 @@ catch(PDOException $e){
 }
 ?>
 
+<!--Bootstrap was used mostly to style this application-->
 <!DOCTYPE html>
 <html lang="en">
     <!--All images used for the clubs and some stories were gotten free from https://unsplash.com/-->

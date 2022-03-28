@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <html>
-
+<!--Bootstrap was used mostly to style this application-->
 <head>
     <link rel="stylesheet" href="../CSS/video.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -28,6 +28,7 @@ session_start();
 <!--As this was not in the scope of the course, i learnt how to make background a video on w3schools, and 
 CSS tricks URL: https://css-tricks.com/full-page-background-video-styles/-->
 <header class="video-header">
+    <!--This code makes the background a video, and if for anycase the video is having issues, the background image will be displayed.-->
     <video src="../video/party.mp4" autoplay loop playsinline muted
         poster="https://images.unsplash.com/photo-1602618135005-165bc6b7e847?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y2x1YnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"></video>
 

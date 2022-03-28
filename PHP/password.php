@@ -90,7 +90,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <!DOCTYPE html>
 <html lang="en">
-
+<!--Bootstrap was used mostly to style this application-->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -127,7 +127,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <h5>Please fill the form below to recover your password.</h3>
         </div>
         <div>
-            <!--The form is a self referencing form. The enctype is really important for the file to upload.-->
+            <!--The form is a self referencing form.-->
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="mt-5" method="post">
                 <div class="">
                     <div>

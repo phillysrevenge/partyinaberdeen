@@ -41,6 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             //Sql statement to insert into database.
             $sql = "INSERT INTO clubs (clubname, Location, Category, picture) VALUES ('$club', '$location', '$category', '$picture')";
             $result = $pdo->exec($sql);
+            //redirect user to the homepage
 
             header("location: home.php");
         

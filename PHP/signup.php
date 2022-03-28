@@ -1,9 +1,10 @@
 <?php
+//I learnt how to use PDO from tutorial republic. https://www.tutorialrepublic.com/
 session_start();
 //I include the database connection file.
 require_once "dbconnection.php";
 
-//I'll define the variables as initial values first.
+//I'll define the variables as empty values first.
 $username = $email = $password = $phone = $role = "";
 $usernameerror = $emailerror = $passworderror = $phoneerror = $roleerror = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -119,7 +120,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 ?>
 
-
+<!--Used bootstrap heavily for styling-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -145,6 +146,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </button>
         <div class="collapse navbar-collapse" id="navs">
             <div class="navbar-nav">
+                <!--Navs are defined based on user's role-->
             <?php
                 include('navs.php');
             ?>
@@ -187,7 +189,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <label for="Role">Select a Role</label>
                     <select name="role" id="Role" class="form-control <?php echo(!empty($roleerror)) ? 'is-invalid' : ''; ?>" value= "<?php echo $role; ?>">
                       <option value="admin">--Select a role--</option>
-                     <!-- <option value="admin">Admin</option> -->
+                     <!-- <option value="admin">Admin</option> commenting this out so users cannot select admin role upon signup. I could have used the hidden option but it'll be vulnerable to attacks-->
                      <option value="storyteller">Story Teller</option>
                      <option value="reader">Reader</option>
                     </select>
